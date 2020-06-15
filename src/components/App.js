@@ -25,7 +25,7 @@ export default function App(props) {
   return (
     <div className='App'>
       <nav>
-        <h1 className='store-header'>Emily&apos;s Trinkets</h1>
+        <h1 className='store-header'>Penguin&apos;s Trinkets</h1>
         <div className='nav-links'>
           {/* 👉 STEP 3 - Make Links to navigate us Home (`/`) and Shop (`/items-list`) */}
           <Link to="/">Home</Link>
@@ -34,18 +34,19 @@ export default function App(props) {
       </nav>
 
       {/* 👉 STEP 4 - Build a Switch with a Route for each of the components imported at the top */}
-      {/*need switch in order to find correct route for the current url - uses only first route that matches renders */}
+      {/*need switch in order to find correct route for the current url - uses only first route that matches renders 
+      ** order routes from most specific to least specific unless using exact infront of the path */}
       <Switch>
-        <Route exact path="/">
-          <Home />
+      <Route path="/item-list/:itemid">
+          <Item />
         </Route>
 
         <Route path="/items-list">
-          <ItemsList items={[]}/>
+          <ItemsList items={stock}/>
         </Route>
 
-        <Route path="/item-list/:itemid">
-          <Item />
+        <Route path="/">
+          <Home />
         </Route>
       </Switch>
 
