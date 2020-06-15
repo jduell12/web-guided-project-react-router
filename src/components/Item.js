@@ -10,9 +10,9 @@ export default function Item(props) {
 
   const {url, path} = useRouteMatch();
   const {itemid} = useParams();
-  console.log(`url: `, url);
-  console.log(`path: `, path);
-  console.log(itemid);
+  // console.log(`url: `, url);
+  // console.log(`path: `, path);
+  // console.log(itemid);
 
   // 👉 STEP 7 - We need to pull item from items, using a parameter in the URL (:itemID)
   // Beware! The ids are integers, whereas URL parameters are strings.
@@ -40,10 +40,19 @@ export default function Item(props) {
 
       <nav className='item-sub-nav'>
         {/* 👉 STEP 8 - Here go the NavLinks to `<current url>/shipping` and `<current url>/description` */}
+        <NavLink to={`${url}/shipping`}>Shipping</NavLink>
+        <NavLink to={`${url}/description`}>Description</NavLink>
       </nav>
 
       {/* 👉 STEP 9 - Here go the Routes for `<current path>/shipping` and `<current path>/description` */}
       {/* These Routes should render <ItemDetails /> */}
+      <Route path={`${path}/description`}>
+        <ItemDetails text={item.description}/>
+      </Route>
+
+      <Route path={`${path}/shipping`}>
+        <ItemDetails text={item.shipping}/>
+      </Route>
 
       {/* 👉 STEP 10 - Shorten paths and urls with `useRouteMatch` hook */}
     </div>
