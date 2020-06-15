@@ -1,5 +1,6 @@
 import React from 'react'
 // We'll need quite a few imports from react-router-dom
+import {useRouteMatch, useHistory, useParams, NavLink, Route} from 'react-router-dom'
 
 import ItemDetails from './ItemDetails'
 
@@ -7,11 +8,23 @@ export default function Item(props) {
   // We get ALL items through props. We'll use the URL to find out which item is the one to show.
   const { items } = props
 
+  const {url, path} = useRouteMatch();
+  const {itemid} = useParams();
+  console.log(`url: `, url);
+  console.log(`path: `, path);
+  console.log(itemid);
+
   // 👉 STEP 7 - We need to pull item from items, using a parameter in the URL (:itemID)
   // Beware! The ids are integers, whereas URL parameters are strings.
   // Beware! The JSX is expecting 'item' to exist instantly!
   // we use this hook to grab they dynamic parts of the path (:itemID).
-  const item = {}
+  const item = items.find(i => {
+    return i.id == itemid;
+  })
+
+  if(!item){
+    return 'Looking for your item...';
+  }
 
   return (
     <div className='item-wrapper'>

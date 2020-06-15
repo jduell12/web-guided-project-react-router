@@ -37,8 +37,8 @@ export default function App(props) {
       {/*need switch in order to find correct route for the current url - uses only first route that matches renders 
       ** order routes from most specific to least specific unless using exact infront of the path */}
       <Switch>
-      <Route path="/item-list/:itemid">
-          <Item />
+        <Route path="/items-list/:itemid">
+          <Item items={stock}/>
         </Route>
 
         <Route path="/items-list">
